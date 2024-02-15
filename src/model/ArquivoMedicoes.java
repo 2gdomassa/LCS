@@ -1,4 +1,4 @@
-package Codigo;
+package model;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class ArquivoMedicoes {
     }
     private static void criarCabecalho(String nomeArquivo) {
     try (PrintWriter escritor = new PrintWriter(new FileWriter(nomeArquivo, true))) {
-        escritor.println("Data do Contato;Nome;Telefone;Pressao Diastolica;Estresse");
+        escritor.println("Data do Contato;Nome;Telefone;Oferta;Origem");
     } catch (IOException e) {
         e.printStackTrace();
     }
@@ -75,9 +75,9 @@ public static void adicionarAoArquivo(String nomeDoArquivo, String novaLinha) {
             modelo.addRow(new String[]{
                 m.getData(),
                 m.getNome(),
-                m.getOferta(),
                 m.getOrigem(),
-                m.getTelefone()
+                m.getTelefone(),
+                m.getOferta()
             });
         }
     }

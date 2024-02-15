@@ -1,5 +1,5 @@
 
-package Codigo;
+package model;
 import java.util.ArrayList;
 public class ListaDeMedicoes {
  static ArrayList <Lead> listaMedicoes = new ArrayList<>();

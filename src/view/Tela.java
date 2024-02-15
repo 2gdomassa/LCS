@@ -1,7 +1,9 @@
 
-package Telas;
+package view;
  
-import Codigo.*;
+import model.ArquivoMedicoes;
+import model.ListaDeMedicoes;
+import model.Lead;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,6 +54,7 @@ public class Tela extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jButton2 = new javax.swing.JButton();
         inData = new javax.swing.JFormattedTextField();
@@ -65,8 +68,8 @@ public class Tela extends javax.swing.JFrame {
         tblMedicoes = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         inNome = new javax.swing.JTextField();
-        inTelefone = new javax.swing.JLabel();
-        inNome1 = new javax.swing.JTextField();
+        txtTelefone = new javax.swing.JLabel();
+        inTelefone = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -94,6 +97,8 @@ public class Tela extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable2);
 
+        jMenuItem1.setText("jMenuItem1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 0, 0));
 
@@ -118,6 +123,7 @@ public class Tela extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        inData.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         inData.setToolTipText("Insira aqui a data da medição");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
@@ -167,10 +173,16 @@ public class Tela extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Contatos anteriores:");
 
-        inTelefone.setBackground(new java.awt.Color(255, 255, 255));
-        inTelefone.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        inTelefone.setForeground(new java.awt.Color(0, 0, 0));
-        inTelefone.setText("Telefone:");
+        txtTelefone.setBackground(new java.awt.Color(255, 255, 255));
+        txtTelefone.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        txtTelefone.setForeground(new java.awt.Color(0, 0, 0));
+        txtTelefone.setText("Telefone:");
+
+        inTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inTelefoneActionPerformed(evt);
+            }
+        });
 
         jLayeredPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(inData, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -183,8 +195,8 @@ public class Tela extends javax.swing.JFrame {
         jLayeredPane1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(inNome, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(txtTelefone, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(inTelefone, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(inNome1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -192,38 +204,37 @@ public class Tela extends javax.swing.JFrame {
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(78, 78, 78)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(txtTelefone)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel6))
+                .addGap(32, 32, 32)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(inTelefone)
-                            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel6)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(inNome1, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
-                                    .addComponent(inNome))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(inOrigem, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
-                                    .addComponent(inOferta))
-                                .addGap(115, 115, 115)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70))))
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(inOferta, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inOrigem))
+                        .addGap(201, 201, 201))
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(inData, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(inData, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(inNome, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(inTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(201, Short.MAX_VALUE))))
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addGap(287, 287, 287)
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(307, 307, 307))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,25 +246,22 @@ public class Tela extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(inNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inTelefone)
                     .addComponent(inNome, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(inOferta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(30, 30, 30))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)))
+                .addGap(18, 18, 18)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTelefone)
+                    .addComponent(inTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inOferta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
                     .addComponent(inOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -264,17 +272,17 @@ public class Tela extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jLayeredPane1.getAccessibleContext().setAccessibleName("");
@@ -285,19 +293,19 @@ public class Tela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    String data = inData.getText();
-    String pressaoSistolica = inOferta.getText();
-    String pressaoDiastolica = inOrigem.getText();
+    
 
     
         Lead prototipo = new Lead(null, null, null, null, null);
         prototipo.setNome(inNome.getText());
         prototipo.setData(inData.getText());
+        prototipo.setNome(inNome.getText());
         prototipo.setOferta(inOferta.getText());
-        prototipo.setOrigem(inOrigem.getText());
-
-       
+        prototipo.setTelefone(inTelefone.getText());
+        prototipo.setOrigem(inOrigem.getText());       
         ListaDeMedicoes.AdicionaNaLista(prototipo);
+        
+        
         String novaLinha = prototipo.getData() + ";" + prototipo.getNome() + ";" + prototipo.getOferta() + ";" + prototipo.getOrigem() + ";" + prototipo.getTelefone();
         ArquivoMedicoes.adicionarAoArquivo("eee.csv", novaLinha);
         DefaultTableModel tabelaModelo = (DefaultTableModel) tblMedicoes.getModel();
@@ -310,6 +318,10 @@ public class Tela extends javax.swing.JFrame {
         });
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void inTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inTelefoneActionPerformed
 
     public static void main(String args[]) {
   
@@ -346,10 +358,9 @@ public class Tela extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField inData;
     private javax.swing.JTextField inNome;
-    private javax.swing.JTextField inNome1;
     private javax.swing.JTextField inOferta;
     private javax.swing.JTextField inOrigem;
-    private javax.swing.JLabel inTelefone;
+    private javax.swing.JTextField inTelefone;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -357,11 +368,13 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable tblMedicoes;
+    private javax.swing.JLabel txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

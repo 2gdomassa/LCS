@@ -1,5 +1,5 @@
 
-package Codigo;
+package model;
 
 public class Lead {
     private String data,nome,telefone, origem,oferta;
