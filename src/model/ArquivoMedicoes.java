@@ -14,7 +14,7 @@ public class ArquivoMedicoes {
     }
     private static void criarCabecalho(String nomeArquivo) {
     try (PrintWriter escritor = new PrintWriter(new FileWriter(nomeArquivo, true))) {
-        escritor.println("Data do Contato;Nome;Telefone;Oferta;Origem");
+        escritor.println("Data do Contato;Nome;Telefone;Retorno;Origem");
     } catch (IOException e) {
         e.printStackTrace();
     }

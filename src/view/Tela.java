@@ -111,7 +111,7 @@ public class Tela extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jButton2.setText("Salvar");
-        jButton2.setToolTipText("Clique aqui para enviar o registro de medição");
+        jButton2.setToolTipText("Clique para salvar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -124,7 +124,7 @@ public class Tela extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         inData.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        inData.setToolTipText("Insira aqui a data da medição");
+        inData.setToolTipText("");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -136,16 +136,16 @@ public class Tela extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Nome:");
 
-        inOferta.setToolTipText("Insira aqui qual era sua pressão sistólica");
+        inOferta.setToolTipText("");
         inOferta.setNextFocusableComponent(inOrigem);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setLabelFor(inOferta);
-        jLabel3.setText("Oferta:");
+        jLabel3.setText("Retorno:");
 
-        inOrigem.setToolTipText("Insira aqui qual era sua pressão diastólica");
+        inOrigem.setToolTipText("");
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
